@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROBO DRIVE X</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #02050a;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
+  background: url("car-bg.png") center 62% / cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55),
+    transparent 45%,
+    rgba(0,0,0,.15)
+  );
+}
+
+nav {
+  position: relative;
+  z-index: 2;
+  margin: 18px auto;
+  width: 94%;
+  padding: 18px 28px;
+  border-radius: 60px;
+  border: 1px solid #193147;
+  background: rgba(3, 10, 19, .75);
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #00aaff;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 14px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: #00baff;
+}
+
+.online {
+  color: #00e9a2;
+}
+
+.content {
+  position: relative;
+  text-align: center;
+  margin-top: 7vh;
+  animation: appear 1.2s ease;
+}
+
+.subtitle {
+  color: #b8d8f0;
+  letter-spacing: 5px;
+  font-size: 13px;
+}
+
+h1 {
+  font-size: clamp(45px, 8vw, 110px);
+  font-weight: 900;
+  font-style: italic;
+  margin: 20px 0;
+  text-shadow: 0 0 30px #000;
+}
+
+h1 span {
+  color: #00aaff;
+}
+
+.tagline {
+  letter-spacing: 6px;
+  color: #c7e2f8;
+}
+
+.buttons {
+  margin-top: 35px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  margin: 10px;
+  border: 1px solid #25baff;
+  border-radius: 40px;
+  color: white;
+  text-decoration: none;
+  background: rgba(0, 20, 40, .7);
+  transition: .3s;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #00aaff, #0066dd);
+  box-shadow: 0 0 20px #008cff66;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #00aaff;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 25px;
+  left: 4%;
+  right: 4%;
+  display: flex;
+  justify-content: space-between;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width: 750px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 15px;
+    border-radius: 20px;
+  }
+
+  nav a {
+    margin: 5px;
+    font-size: 12px;
+  }
+
+  .content {
+    margin-top: 8vh;
+  }
+
+  .hero {
+    background-position: center 65%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<nav>
+  <div class="logo">ROBO DRIVE <span>X</span></div>
+
+  <div>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#track">Live Track</a>
+    <a href="#system">System</a>
+    <a href="#about">About</a>
+  </div>
+
+  <div class="online">● Online</div>
+</nav>
+
+<div class="content">
+  <div class="subtitle">ENGINEERING THE FUTURE OF ROBOTICS</div>
+
+  <h1>ROBO DRIVE <span>X</span></h1>
+
+  <div class="tagline">
+    SMART · CONNECTED · AUTONOMOUS
+  </div>
+
+  <div class="buttons">
+    <a href="#projects" class="btn primary">◉ Explore Projects</a>
+    <a href="#track" class="btn">▥ Live Track</a>
+  </div>
+</div>
+
+<div class="bottom">
+  <div>⌄ &nbsp; SCROLL DOWN</div>
+  <div>ROBO INVENTOR</div>
+</div>
+
+</section>
+
+</body>
+</html>
