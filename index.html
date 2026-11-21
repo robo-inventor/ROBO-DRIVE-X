@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +16,15 @@
     --blue: #00aaff;
     --cyan: #64e8ff;
     --bg: #03070d;
-    --panel: rgba(9, 18, 32, 0.82);
-    --border: rgba(0, 170, 255, 0.25);
+    --panel: rgba(9,18,32,0.82);
+    --border: rgba(0,170,255,0.25);
     --text: #ffffff;
     --muted: #9db1c7;
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 110px;
 }
 
 body {
@@ -32,6 +32,7 @@ body {
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 button {
@@ -43,7 +44,7 @@ button:focus-visible {
     outline: 2px solid var(--cyan);
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 .navbar {
     position: fixed;
@@ -53,16 +54,13 @@ button:focus-visible {
     width: 94%;
     max-width: 1250px;
     z-index: 1000;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 15px 22px;
     border: 1px solid var(--border);
     border-radius: 16px;
-
-    background: rgba(2, 8, 16, 0.85);
+    background: rgba(2,8,16,0.85);
     backdrop-filter: blur(15px);
 }
 
@@ -94,46 +92,33 @@ button:focus-visible {
 .nav-btn:hover,
 .nav-btn.active {
     color: white;
-    background: rgba(0, 170, 255, 0.12);
+    background: rgba(0,170,255,0.12);
     border-color: var(--blue);
 }
 
-/* ================= PAGE SYSTEM ================= */
+/* SCROLLING SECTIONS */
 
 .page {
-    display: none;
+    display: block;
     min-height: 100vh;
     padding: 120px 6% 60px;
-    animation: fadeIn 0.5s ease;
+    scroll-margin-top: 110px;
+    border-bottom: 1px solid rgba(0,170,255,0.06);
 }
 
-.page.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ================= HOME ================= */
+/* HOME */
 
 #home {
     position: relative;
     min-height: 100vh;
     padding: 0;
-    display: none;
-
+    display: flex;
     background:
         linear-gradient(90deg,
-            rgba(2, 5, 12, 0.96) 0%,
-            rgba(2, 5, 12, 0.72) 45%,
-            rgba(2, 5, 12, 0.15) 100%),
+        rgba(2,5,12,0.96) 0%,
+        rgba(2,5,12,0.72) 45%,
+        rgba(2,5,12,0.15) 100%),
         url("car-bg.png") center 60% / cover no-repeat;
-}
-
-#home.active {
-    display: flex;
 }
 
 .home-content {
@@ -154,13 +139,14 @@ button:focus-visible {
 }
 
 .home-content h1 {
-    font-size: clamp(45px, 8vw, 100px);
+    font-size: clamp(45px,8vw,100px);
     line-height: 0.95;
     font-weight: 900;
     letter-spacing: -3px;
 }
 
-.home-content h1 span {
+.home-content h1 span,
+.section-heading h2 span {
     color: var(--blue);
 }
 
@@ -189,14 +175,14 @@ button:focus-visible {
 
 .primary-btn {
     color: white;
-    background: linear-gradient(90deg, #0077ff, #00c8ff);
+    background: linear-gradient(90deg,#0077ff,#00c8ff);
     border: none;
-    box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
+    box-shadow: 0 0 25px rgba(0,170,255,0.2);
 }
 
 .primary-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 30px rgba(0, 170, 255, 0.5);
+    box-shadow: 0 0 30px rgba(0,170,255,0.5);
 }
 
 .secondary-btn {
@@ -224,7 +210,7 @@ button:focus-visible {
     letter-spacing: 2px;
 }
 
-/* ================= COMMON ================= */
+/* COMMON */
 
 .section-heading {
     margin-bottom: 35px;
@@ -235,12 +221,8 @@ button:focus-visible {
 }
 
 .section-heading h2 {
-    font-size: clamp(32px, 5vw, 55px);
+    font-size: clamp(32px,5vw,55px);
     font-weight: 900;
-}
-
-.section-heading h2 span {
-    color: var(--blue);
 }
 
 .section-heading p {
@@ -263,11 +245,11 @@ button:focus-visible {
     margin-bottom: 20px;
 }
 
-/* ================= PROJECTS ================= */
+/* PROJECTS */
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
     gap: 20px;
 }
 
@@ -301,7 +283,7 @@ button:focus-visible {
     font-size: 14px;
 }
 
-/* ================= LIVE TRACK ================= */
+/* TRACK */
 
 .track-layout {
     display: grid;
@@ -327,9 +309,8 @@ button:focus-visible {
     height: 270px;
     border: 8px solid #263a4e;
     border-radius: 150px;
-    box-shadow:
-        0 0 0 3px #07101a,
-        0 0 25px rgba(0,170,255,0.08);
+    box-shadow: 0 0 0 3px #07101a,
+                0 0 25px rgba(0,170,255,0.08);
 }
 
 .track-loop::before {
@@ -346,11 +327,10 @@ button:focus-visible {
     left: 50%;
     width: 45px;
     height: 28px;
-    background: linear-gradient(135deg, #00aaff, #ffffff);
+    background: linear-gradient(135deg,#00aaff,#ffffff);
     border-radius: 8px;
     box-shadow: 0 0 25px var(--blue);
     transform: translateX(-50%);
-    transition: left 0.2s;
     z-index: 2;
 }
 
@@ -371,25 +351,14 @@ button:focus-visible {
     letter-spacing: 3px;
 }
 
-.track-label.top {
-    top: 12%;
-}
-
-.track-label.bottom {
-    bottom: 12%;
-}
-
-.track-label.left {
-    left: 8%;
-}
-
-.track-label.right {
-    right: 8%;
-}
+.track-label.top { top: 12%; }
+.track-label.bottom { bottom: 12%; }
+.track-label.left { left: 8%; }
+.track-label.right { right: 8%; }
 
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 14px;
 }
 
@@ -443,11 +412,11 @@ button:focus-visible {
     line-height: 1.6;
 }
 
-/* ================= SYSTEM ================= */
+/* SYSTEM */
 
 .system-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 20px;
 }
 
@@ -471,7 +440,7 @@ button:focus-visible {
     text-align: right;
 }
 
-/* ================= BATTERY ================= */
+/* BATTERY */
 
 .battery-container {
     display: flex;
@@ -503,7 +472,7 @@ button:focus-visible {
     width: 85%;
     height: 100%;
     border-radius: 3px;
-    background: linear-gradient(90deg, #00aaff, #00ffb3);
+    background: linear-gradient(90deg,#00aaff,#00ffb3);
     transition: width 0.5s;
 }
 
@@ -513,7 +482,7 @@ button:focus-visible {
     color: var(--cyan);
 }
 
-/* ================= SIGNAL ================= */
+/* SIGNAL */
 
 .signal-bars {
     display: flex;
@@ -539,11 +508,11 @@ button:focus-visible {
     box-shadow: 0 0 10px rgba(0,200,255,0.3);
 }
 
-/* ================= MODE SELECTOR ================= */
+/* MODES */
 
 .mode-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 12px;
 }
 
@@ -577,7 +546,7 @@ button:focus-visible {
     color: var(--muted);
 }
 
-/* ================= ABOUT ================= */
+/* ABOUT */
 
 .about-panel {
     max-width: 850px;
@@ -595,7 +564,7 @@ button:focus-visible {
     color: var(--cyan);
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 .footer {
     margin-top: 50px;
@@ -609,10 +578,9 @@ button:focus-visible {
     gap: 15px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media (max-width: 850px) {
-
     .navbar {
         align-items: flex-start;
         flex-direction: column;
@@ -668,7 +636,6 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
-
     .home-content h1 {
         font-size: 48px;
     }
@@ -698,13 +665,10 @@ button:focus-visible {
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 
 <nav class="navbar">
-
-    <div class="logo">
-        ROBO <span>DRIVE X</span>
-    </div>
+    <div class="logo">ROBO <span>DRIVE X</span></div>
 
     <div class="nav-links">
         <button class="nav-btn active" onclick="showPage('home', this)">Home</button>
@@ -713,17 +677,13 @@ button:focus-visible {
         <button class="nav-btn" onclick="showPage('system', this)">System</button>
         <button class="nav-btn" onclick="showPage('about', this)">About</button>
     </div>
-
 </nav>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
-<section class="page active" id="home">
-
+<section class="page" id="home">
     <div class="home-content">
-
         <div class="small-label">ROBO INVENTOR PRESENTS</div>
-
         <h1>ROBO<br><span>DRIVE X</span></h1>
 
         <p class="home-description">
@@ -734,32 +694,25 @@ button:focus-visible {
         </p>
 
         <div class="home-buttons">
-
-            <button class="primary-btn"
-                onclick="showPage('projects')">
+            <button class="primary-btn" onclick="showPage('projects')">
                 EXPLORE PROJECT
             </button>
 
-            <button class="secondary-btn"
-                onclick="showPage('track')">
+            <button class="secondary-btn" onclick="showPage('track')">
                 LIVE TRACK
             </button>
-
         </div>
-
     </div>
 
     <div class="home-bottom">
         <span>SMART ROBOTICS SYSTEM</span>
         <span>DESIGNED BY ROBO INVENTOR</span>
     </div>
-
 </section>
 
-<!-- ================= PROJECTS ================= -->
+<!-- PROJECTS -->
 
 <section class="page" id="projects">
-
     <div class="section-heading">
         <div class="small-label">OUR TECHNOLOGY</div>
         <h2>PROJECT <span>MODULES</span></h2>
@@ -767,55 +720,35 @@ button:focus-visible {
     </div>
 
     <div class="projects-grid">
-
         <div class="project-card">
             <div class="project-icon">🚘</div>
             <h3>Vehicle System</h3>
-            <p>
-                A robotic vehicle platform designed for
-                wireless operation, movement and
-                smart monitoring.
-            </p>
+            <p>A robotic vehicle platform designed for wireless operation, movement and smart monitoring.</p>
         </div>
 
         <div class="project-card">
             <div class="project-icon">🕹️</div>
             <h3>Dual Joystick</h3>
-            <p>
-                Two joystick inputs for controlling
-                movement in different directions
-                through a wireless system.
-            </p>
+            <p>Two joystick inputs for controlling movement in different directions through a wireless system.</p>
         </div>
 
         <div class="project-card">
             <div class="project-icon">📡</div>
             <h3>Wireless System</h3>
-            <p>
-                ESP-based wireless communication
-                architecture for exchanging control
-                and monitoring information.
-            </p>
+            <p>ESP-based wireless communication architecture for exchanging control and monitoring information.</p>
         </div>
 
         <div class="project-card">
             <div class="project-icon">☁️</div>
             <h3>Cloud Dashboard</h3>
-            <p>
-                A web dashboard concept for displaying
-                battery, distance, signal status,
-                selected modes and vehicle data.
-            </p>
+            <p>A web dashboard concept for displaying battery, distance, signal status, selected modes and vehicle data.</p>
         </div>
-
     </div>
-
 </section>
 
-<!-- ================= LIVE TRACK ================= -->
+<!-- LIVE TRACK -->
 
 <section class="page" id="track">
-
     <div class="section-heading">
         <div class="small-label">VEHICLE MONITORING</div>
         <h2>LIVE <span>TRACKING</span></h2>
@@ -823,11 +756,7 @@ button:focus-visible {
     </div>
 
     <div class="track-layout">
-
-        <!-- TRACK -->
-
         <div class="trackbox">
-
             <div class="track-label top">ROBO DRIVE X TRACK</div>
             <div class="track-label bottom">LIVE MONITORING DEMO</div>
             <div class="track-label left">START</div>
@@ -836,31 +765,20 @@ button:focus-visible {
             <div class="track-loop" id="trackLoop">
                 <div class="track-car" id="trackCar"></div>
             </div>
-
         </div>
 
-        <!-- METRICS -->
-
         <div class="panel">
-
             <div class="panel-title">Vehicle Telemetry</div>
 
             <div class="metrics-grid">
-
                 <div class="metric">
                     <div class="metric-label">SPEED</div>
-                    <div class="metric-value">
-                        <span id="speed">0</span>
-                        <span>km/h</span>
-                    </div>
+                    <div class="metric-value"><span id="speed">0</span> <span>km/h</span></div>
                 </div>
 
                 <div class="metric">
                     <div class="metric-label">DISTANCE</div>
-                    <div class="metric-value">
-                        <span id="distance">0.00</span>
-                        <span>m</span>
-                    </div>
+                    <div class="metric-value"><span id="distance">0.00</span> <span>m</span></div>
                 </div>
 
                 <div class="metric">
@@ -872,40 +790,25 @@ button:focus-visible {
                     <div class="metric-label">STATUS</div>
                     <div class="metric-value" id="carStatus">STOPPED</div>
                 </div>
-
             </div>
 
             <div class="track-controls">
-
-                <button class="control-btn" onclick="startSimulation()">
-                    ▶ Start Demo
-                </button>
-
-                <button class="control-btn" onclick="stopSimulation()">
-                    ■ Stop
-                </button>
-
-                <button class="control-btn" onclick="resetSimulation()">
-                    ↻ Reset
-                </button>
-
+                <button class="control-btn" onclick="startSimulation()">▶ Start Demo</button>
+                <button class="control-btn" onclick="stopSimulation()">■ Stop</button>
+                <button class="control-btn" onclick="resetSimulation()">↻ Reset</button>
             </div>
 
             <div class="demo-note">
-                DEMO MODE — This animation and these measurements
-                are simulated. They are not actual vehicle telemetry.
+                DEMO MODE — This animation and these measurements are simulated.
+                They are not actual vehicle telemetry.
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-<!-- ================= SYSTEM ================= -->
+<!-- SYSTEM -->
 
 <section class="page" id="system">
-
     <div class="section-heading">
         <div class="small-label">CONNECTED VEHICLE</div>
         <h2>SYSTEM <span>MONITOR</span></h2>
@@ -915,22 +818,16 @@ button:focus-visible {
     <div class="system-grid">
 
         <!-- BATTERY & SIGNAL -->
-
         <div class="panel">
-
             <div class="panel-title">Power & Wireless</div>
 
             <div class="system-row">
                 <span>Battery Level</span>
-
                 <div class="battery-container">
                     <div class="battery-outline">
                         <div class="battery-fill" id="batteryFill"></div>
                     </div>
-
-                    <div class="battery-percent" id="batteryPercent">
-                        85%
-                    </div>
+                    <div class="battery-percent" id="batteryPercent">85%</div>
                 </div>
             </div>
 
@@ -941,12 +838,8 @@ button:focus-visible {
 
             <div class="system-row">
                 <span>Wireless Signal</span>
-
                 <div class="signal-bars" id="signalBars">
-                    <i class="active"></i>
-                    <i class="active"></i>
-                    <i class="active"></i>
-                    <i class="active"></i>
+                    <i class="active"></i><i class="active"></i><i class="active"></i><i class="active"></i>
                 </div>
             </div>
 
@@ -961,25 +854,17 @@ button:focus-visible {
             </div>
 
             <div class="demo-note">
-                Battery and signal are sample values until the ESP telemetry
-                is connected.
+                Battery and signal are sample values until the ESP telemetry is connected.
             </div>
-
         </div>
 
         <!-- DISTANCE -->
-
         <div class="panel">
-
             <div class="panel-title">Vehicle Distance</div>
 
             <div class="metric" style="margin-bottom:15px;">
                 <div class="metric-label">TOTAL DISTANCE COVERED</div>
-
-                <div class="metric-value">
-                    <span id="totalDistance">0.00</span>
-                    <span>m</span>
-                </div>
+                <div class="metric-value"><span id="totalDistance">0.00</span> <span>m</span></div>
             </div>
 
             <div class="system-row">
@@ -998,85 +883,45 @@ button:focus-visible {
             </div>
 
             <div class="demo-note">
-                Actual distance requires wheel rotation measurements
-                from an encoder and a connected controller.
+                Actual distance requires wheel rotation measurements from an encoder and a connected controller.
             </div>
-
         </div>
 
         <!-- HARDWARE -->
-
         <div class="panel">
-
             <div class="panel-title">Hardware Information</div>
 
-            <div class="system-row">
-                <span>Controller</span>
-                <span>ESP8266</span>
-            </div>
-
-            <div class="system-row">
-                <span>Architecture</span>
-                <span>Wireless</span>
-            </div>
-
-            <div class="system-row">
-                <span>Control System</span>
-                <span>Dual Joystick</span>
-            </div>
-
-            <div class="system-row">
-                <span>Dashboard</span>
-                <span>ROBO DRIVE X</span>
-            </div>
-
-            <div class="system-row">
-                <span>Version</span>
-                <span>RD-X 1.0</span>
-            </div>
-
+            <div class="system-row"><span>Controller</span><span>ESP8266</span></div>
+            <div class="system-row"><span>Architecture</span><span>Wireless</span></div>
+            <div class="system-row"><span>Control System</span><span>Dual Joystick</span></div>
+            <div class="system-row"><span>Dashboard</span><span>ROBO DRIVE X</span></div>
+            <div class="system-row"><span>Version</span><span>RD-X 1.0</span></div>
         </div>
 
         <!-- MODE -->
-
         <div class="panel">
-
             <div class="panel-title">Vehicle Mode Selection</div>
 
             <div class="mode-grid">
-
-                <button class="mode-button active"
-                    onclick="selectMode('MANUAL', this)">
-
+                <button class="mode-button active" onclick="selectMode('MANUAL', this)">
                     <strong>🎮 MANUAL</strong>
                     <small>Joystick control</small>
-
                 </button>
 
-                <button class="mode-button"
-                    onclick="selectMode('AUTONOMOUS', this)">
-
+                <button class="mode-button" onclick="selectMode('AUTONOMOUS', this)">
                     <strong>🤖 AUTONOMOUS</strong>
                     <small>Automatic control</small>
-
                 </button>
 
-                <button class="mode-button"
-                    onclick="selectMode('OBSTACLE AVOID', this)">
-
+                <button class="mode-button" onclick="selectMode('OBSTACLE AVOID', this)">
                     <strong>📡 OBSTACLE AVOID</strong>
                     <small>Obstacle detection mode</small>
-
                 </button>
 
-                <button class="mode-button"
-                    onclick="selectMode('LINE FOLLOW', this)">
-
+                <button class="mode-button" onclick="selectMode('LINE FOLLOW', this)">
                     <strong>〰 LINE FOLLOW</strong>
                     <small>Line tracking mode</small>
-
                 </button>
-
             </div>
 
             <div class="system-row" style="margin-top:20px;">
@@ -1085,46 +930,34 @@ button:focus-visible {
             </div>
 
             <div class="demo-note">
-                Mode selection is currently website-only.
-                The vehicle controller must be connected before
-                a selected mode can be sent to the car.
+                Mode selection is currently website-only. The vehicle controller must be connected before a selected mode can be sent to the car.
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 
 <section class="page" id="about">
-
     <div class="section-heading">
         <div class="small-label">ABOUT THIS PROJECT</div>
         <h2>ROBO <span>INVENTOR</span></h2>
     </div>
 
     <div class="panel about-panel">
-
         <h3>ROBO DRIVE X</h3>
 
-        <p>
-            ROBO DRIVE X is a connected robotics project
-            developed under ROBO INVENTOR.
-        </p>
+        <p>ROBO DRIVE X is a connected robotics project developed under ROBO INVENTOR.</p>
 
         <p>
-            The project explores wireless joystick control,
-            ESP8266 communication, vehicle monitoring,
-            battery status display, distance measurement,
+            The project explores wireless joystick control, ESP8266 communication,
+            vehicle monitoring, battery status display, distance measurement,
             signal monitoring and selectable operating modes.
         </p>
 
         <p>
-            The website acts as a central dashboard concept
-            where vehicle information and system status
-            can be viewed in one interface.
+            The website acts as a central dashboard concept where vehicle information
+            and system status can be viewed in one interface.
         </p>
 
         <p>
@@ -1133,35 +966,28 @@ button:focus-visible {
             <strong>PLATFORM:</strong> ESP8266<br>
             <strong>INTERFACE:</strong> WEB DASHBOARD
         </p>
-
     </div>
-
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <footer class="footer">
-
     <span>ROBO DRIVE X © ROBO INVENTOR</span>
     <span>SMART ROBOTICS • CONNECTED SYSTEMS</span>
-
 </footer>
 
 <script>
 
-/* ================= PAGE NAVIGATION ================= */
+/* NAVIGATION + SMOOTH SCROLL */
 
 function showPage(pageId, clickedButton) {
+    const target = document.getElementById(pageId);
+    if (!target) return;
 
-    document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
+    target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
-
-    const selectedPage = document.getElementById(pageId);
-
-    if (selectedPage) {
-        selectedPage.classList.add("active");
-    }
 
     document.querySelectorAll(".nav-btn").forEach(button => {
         button.classList.remove("active");
@@ -1170,25 +996,39 @@ function showPage(pageId, clickedButton) {
     if (clickedButton) {
         clickedButton.classList.add("active");
     } else {
-        document.querySelectorAll(".nav-btn").forEach(button => {
-            if (button.getAttribute("onclick").includes(pageId)) {
-                button.classList.add("active");
-            }
-        });
-    }
+        const matchingButton = Array.from(document.querySelectorAll(".nav-btn"))
+            .find(button => button.getAttribute("onclick")?.includes(pageId));
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+        if (matchingButton) matchingButton.classList.add("active");
+    }
 }
 
-/* ================= MODE SELECTOR ================= */
+/* AUTO HIGHLIGHT NAVIGATION WHEN SCROLLING */
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+
+            document.querySelectorAll(".nav-btn").forEach(button => {
+                button.classList.toggle(
+                    "active",
+                    button.getAttribute("onclick")?.includes(`'${sectionId}'`)
+                );
+            });
+        }
+    });
+}, { threshold: 0.35 });
+
+document.querySelectorAll(".page").forEach(section => {
+    sectionObserver.observe(section);
+});
+
+/* MODE SELECTOR */
 
 let selectedMode = "MANUAL";
 
 function selectMode(mode, button) {
-
     selectedMode = mode;
 
     document.querySelectorAll(".mode-button").forEach(btn => {
@@ -1196,16 +1036,12 @@ function selectMode(mode, button) {
     });
 
     button.classList.add("active");
-
     document.getElementById("currentMode").textContent = mode;
 
     console.log("Website selected mode:", selectedMode);
-
-    // Website-only mode selection.
-    // Physical vehicle integration is not connected yet.
 }
 
-/* ================= TRACK SIMULATION ================= */
+/* TRACK SIMULATION */
 
 let running = false;
 let position = 0;
@@ -1213,19 +1049,12 @@ let demoDistance = 0;
 let demoSpeed = 0;
 let directionIndex = 0;
 
-const directions = [
-    "FORWARD",
-    "RIGHT",
-    "BACKWARD",
-    "LEFT"
-];
+const directions = ["FORWARD", "RIGHT", "BACKWARD", "LEFT"];
 
 function startSimulation() {
-
     if (running) return;
 
     running = true;
-
     document.getElementById("carStatus").textContent = "RUNNING";
     document.getElementById("wifiStatus").textContent = "DEMO";
     document.getElementById("vehicleConnection").textContent = "DEMO";
@@ -1234,9 +1063,7 @@ function startSimulation() {
 }
 
 function stopSimulation() {
-
     running = false;
-
     demoSpeed = 0;
 
     document.getElementById("speed").textContent = "0";
@@ -1245,9 +1072,7 @@ function stopSimulation() {
 }
 
 function resetSimulation() {
-
     running = false;
-
     position = 0;
     demoDistance = 0;
     demoSpeed = 0;
@@ -1259,16 +1084,14 @@ function resetSimulation() {
     document.getElementById("speed").textContent = "0";
     document.getElementById("distance").textContent = "0.00";
     document.getElementById("totalDistance").textContent = "0.00";
-
     document.getElementById("direction").textContent = "IDLE";
     document.getElementById("carStatus").textContent = "STOPPED";
 }
 
 function simulationLoop() {
-
     if (!running) return;
 
-    position += 1;
+    position++;
 
     if (position > 100) {
         position = 0;
@@ -1276,38 +1099,29 @@ function simulationLoop() {
     }
 
     const car = document.getElementById("trackCar");
-
-    let x = 0;
-    let y = 0;
-
     const angle = (position / 100) * Math.PI * 2;
 
-    x = 50 + 42 * Math.cos(angle);
-    y = 50 + 38 * Math.sin(angle);
+    const x = 50 + 42 * Math.cos(angle);
+    const y = 50 + 38 * Math.sin(angle);
 
     car.style.left = x + "%";
     car.style.top = y + "%";
 
     demoSpeed = 12 + Math.floor(Math.random() * 8);
-
     demoDistance += 0.04;
 
     document.getElementById("speed").textContent = demoSpeed;
     document.getElementById("distance").textContent = demoDistance.toFixed(2);
     document.getElementById("totalDistance").textContent = demoDistance.toFixed(2);
-
-    document.getElementById("direction").textContent =
-        directions[directionIndex];
-
+    document.getElementById("direction").textContent = directions[directionIndex];
     document.getElementById("carStatus").textContent = "RUNNING";
 
     setTimeout(simulationLoop, 200);
 }
 
-/* ================= BATTERY DEMO ================= */
+/* BATTERY DEMO */
 
 function setBatteryDemo(level) {
-
     level = Math.max(0, Math.min(100, level));
 
     document.getElementById("batteryPercent").textContent = level + "%";
@@ -1318,28 +1132,22 @@ function setBatteryDemo(level) {
         document.getElementById("batteryStatus").textContent = "LOW (DEMO)";
     } else {
         document.getElementById("batteryFill").style.background =
-            "linear-gradient(90deg, #00aaff, #00ffb3)";
+            "linear-gradient(90deg,#00aaff,#00ffb3)";
         document.getElementById("batteryStatus").textContent = "DEMO";
     }
 }
 
-/* ================= SIGNAL DEMO ================= */
+/* SIGNAL DEMO */
 
 function setSignalDemo(rssi) {
-
     document.getElementById("signalValue").textContent = rssi + " dBm";
 
     let bars = 0;
 
-    if (rssi >= -50) {
-        bars = 4;
-    } else if (rssi >= -60) {
-        bars = 3;
-    } else if (rssi >= -70) {
-        bars = 2;
-    } else if (rssi >= -85) {
-        bars = 1;
-    }
+    if (rssi >= -50) bars = 4;
+    else if (rssi >= -60) bars = 3;
+    else if (rssi >= -70) bars = 2;
+    else if (rssi >= -85) bars = 1;
 
     const signalElements = document.querySelectorAll("#signalBars i");
 
@@ -1348,7 +1156,7 @@ function setSignalDemo(rssi) {
     });
 }
 
-/* ================= INITIAL VALUES ================= */
+/* INITIAL VALUES */
 
 setBatteryDemo(85);
 setSignalDemo(-45);
