@@ -8,218 +8,740 @@
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #00aaff;
+    --cyan: #55d8ff;
+    --bg: #03070d;
+    --panel: rgba(8, 18, 32, .85);
+    --border: rgba(0, 170, 255, .22);
 }
 
 body {
-  background: #02050a;
-  color: white;
-  font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
 }
 
-.hero {
-  height: 100vh;
-  min-height: 600px;
-  position: relative;
-  overflow: hidden;
-  background: url("car-bg.png") center 62% / cover no-repeat;
+button {
+    font-family: inherit;
+    cursor: pointer;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.55),
-    transparent 45%,
-    rgba(0,0,0,.15)
-  );
-}
-
-nav {
-  position: relative;
-  z-index: 2;
-  margin: 18px auto;
-  width: 94%;
-  padding: 18px 28px;
-  border-radius: 60px;
-  border: 1px solid #193147;
-  background: rgba(3, 10, 19, .75);
-  backdrop-filter: blur(15px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navbar {
+    position: fixed;
+    top: 15px;
+    left: 3%;
+    width: 94%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 24px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    background: rgba(3, 9, 17, .88);
+    backdrop-filter: blur(18px);
 }
 
 .logo {
-  font-size: 23px;
-  font-weight: bold;
-  letter-spacing: 2px;
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    white-space: nowrap;
 }
 
 .logo span {
-  color: #00aaff;
+    color: var(--blue);
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 14px;
-  transition: .3s;
+.navlinks {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-nav a:hover {
-  color: #00baff;
+.navlinks button {
+    background: transparent;
+    color: #c3d0df;
+    border: 1px solid transparent;
+    padding: 11px 17px;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+.navlinks button:hover,
+.navlinks button.active {
+    color: white;
+    background: rgba(0, 145, 255, .16);
+    border-color: #009dff;
+    box-shadow: 0 0 15px #009dff30;
 }
 
 .online {
-  color: #00e9a2;
+    color: #00e6a0;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
-.content {
-  position: relative;
-  text-align: center;
-  margin-top: 7vh;
-  animation: appear 1.2s ease;
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 120px 5% 50px;
+    animation: fade .35s ease;
 }
 
-.subtitle {
-  color: #b8d8f0;
-  letter-spacing: 5px;
-  font-size: 13px;
+.page.active {
+    display: block;
 }
 
-h1 {
-  font-size: clamp(45px, 8vw, 110px);
-  font-weight: 900;
-  font-style: italic;
-  margin: 20px 0;
-  text-shadow: 0 0 30px #000;
+@keyframes fade {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
-h1 span {
-  color: #00aaff;
+/* HOME */
+
+#home {
+    display: none;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    background: url("car-bg.png") center 60% / cover no-repeat;
+}
+
+#home.active {
+    display: block;
+}
+
+#home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.65),
+        transparent 40%,
+        rgba(0,0,0,.08) 70%,
+        rgba(0,0,0,.5)
+    );
+}
+
+.home-content {
+    position: relative;
+    padding-top: 155px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: #c1e5ff;
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+.home-content h1 {
+    font-size: clamp(45px, 8vw, 105px);
+    font-weight: 900;
+    font-style: italic;
+    margin: 18px 0;
+    text-shadow: 0 0 30px #000;
+}
+
+.home-content h1 span {
+    color: var(--blue);
 }
 
 .tagline {
-  letter-spacing: 6px;
-  color: #c7e2f8;
-}
-
-.buttons {
-  margin-top: 35px;
+    letter-spacing: 5px;
+    color: #d2eaff;
+    font-size: 13px;
 }
 
 .btn {
-  display: inline-block;
-  padding: 14px 28px;
-  margin: 10px;
-  border: 1px solid #25baff;
-  border-radius: 40px;
-  color: white;
-  text-decoration: none;
-  background: rgba(0, 20, 40, .7);
-  transition: .3s;
+    display: inline-block;
+    border-radius: 40px;
+    padding: 14px 25px;
+    margin: 30px 8px;
+    color: white;
+    background: linear-gradient(90deg, #008bff, #0055cf);
+    border: 1px solid #27b8ff;
+    box-shadow: 0 0 20px #008cff45;
 }
 
-.btn.primary {
-  background: linear-gradient(90deg, #00aaff, #0066dd);
-  box-shadow: 0 0 20px #008cff66;
+.btn.secondary {
+    background: rgba(4, 14, 25, .75);
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px #00aaff;
-}
-
-.bottom {
-  position: absolute;
-  bottom: 25px;
-  left: 4%;
-  right: 4%;
-  display: flex;
-  justify-content: space-between;
-  letter-spacing: 2px;
-  font-size: 12px;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media(max-width: 750px) {
-  nav {
-    flex-wrap: wrap;
-    gap: 15px;
-    border-radius: 20px;
-  }
-
-  nav a {
-    margin: 5px;
+.home-bottom {
+    position: absolute;
+    bottom: 25px;
+    left: 4%;
+    right: 4%;
+    display: flex;
+    justify-content: space-between;
     font-size: 12px;
-  }
+    color: #c3d8ed;
+    letter-spacing: 2px;
+}
 
-  .content {
-    margin-top: 8vh;
-  }
+/* GENERAL */
 
-  .hero {
-    background-position: center 65%;
-  }
+.section-title {
+    margin-bottom: 35px;
+}
+
+.section-title small {
+    color: var(--cyan);
+    letter-spacing: 4px;
+}
+
+.section-title h1 {
+    font-size: clamp(35px, 6vw, 65px);
+    margin-top: 12px;
+}
+
+.section-title p {
+    color: #91a5bc;
+    margin-top: 12px;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(12px);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #0b1929, #07101b);
+    border: 1px solid #17334e;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #00aaff;
+    box-shadow: 0 0 22px #008cff20;
+}
+
+.card h2 {
+    color: #40baff;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #a5b7cb;
+    line-height: 1.7;
+}
+
+.tag {
+    display: inline-block;
+    padding: 7px 12px;
+    margin: 5px 4px 0 0;
+    background: #0d2236;
+    border: 1px solid #214666;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #91d9ff;
+}
+
+/* LIVE TRACK */
+
+.trackbox {
+    height: 350px;
+    background: #07111d;
+    border: 1px solid #183c5b;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-loop {
+    position: absolute;
+    width: 82%;
+    height: 190px;
+    left: 9%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid #1a354d;
+    border-radius: 100px;
+    box-shadow: 0 0 20px #00aaff18;
+}
+
+.track-loop::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 2px dashed #396584;
+    border-radius: 100px;
+}
+
+.track-car {
+    position: absolute;
+    width: 45px;
+    height: 27px;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, #0075ff, #00cfff);
+    border-radius: 8px;
+    box-shadow: 0 0 20px #00aaff;
+    z-index: 2;
+}
+
+.track-car.run {
+    animation: trackMove 8s linear infinite alternate;
+}
+
+@keyframes trackMove {
+    from { left: 10%; }
+    to { left: 84%; }
+}
+
+.track-caption {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    font-size: 11px;
+    color: #6485a3;
+    letter-spacing: 2px;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.metric {
+    background: #0a1726;
+    border: 1px solid #18344d;
+    padding: 22px;
+    border-radius: 16px;
+}
+
+.metric small {
+    color: #829bb5;
+    letter-spacing: 1px;
+}
+
+.metric h2 {
+    color: #36baff;
+    margin-top: 10px;
+    font-size: 26px;
+}
+
+/* SYSTEM */
+
+.status-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: #00e6a0;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00e6a0;
+    margin-right: 8px;
+}
+
+.system-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 0;
+    border-bottom: 1px solid #183047;
+    color: #9db1c7;
+}
+
+.system-row strong {
+    color: white;
+}
+
+/* ABOUT */
+
+.about-box {
+    max-width: 850px;
+    line-height: 1.9;
+    color: #aabbd0;
+}
+
+.about-box h2 {
+    color: #39baff;
+    margin: 25px 0 10px;
+}
+
+footer {
+    text-align: center;
+    color: #536b83;
+    padding: 30px 10px;
+    font-size: 12px;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+    .navbar {
+        border-radius: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 13px;
+        top: 8px;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navlinks {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .navlinks button {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    .online {
+        display: none;
+    }
+
+    .home-content {
+        padding-top: 185px;
+    }
+
+    .page {
+        padding-top: 175px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trackbox {
+        height: 280px;
+    }
+
+    #home {
+        background-position: 58% center;
+    }
+
+    .home-bottom {
+        font-size: 10px;
+    }
+}
+
+@media(max-width: 380px) {
+    .navlinks button {
+        padding: 8px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<nav class="navbar">
+    <div class="logo">ROBO DRIVE <span>X</span></div>
 
-<nav>
-  <div class="logo">ROBO DRIVE <span>X</span></div>
+    <div class="navlinks">
+        <button class="active" onclick="showPage('home',this)">Home</button>
+        <button onclick="showPage('projects',this)">Projects</button>
+        <button onclick="showPage('track',this)">Live Track</button>
+        <button onclick="showPage('system',this)">System</button>
+        <button onclick="showPage('about',this)">About</button>
+    </div>
 
-  <div>
-    <a href="#home">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#track">Live Track</a>
-    <a href="#system">System</a>
-    <a href="#about">About</a>
-  </div>
-
-  <div class="online">● Online</div>
+    <div class="online">● Online</div>
 </nav>
 
-<div class="content">
-  <div class="subtitle">ENGINEERING THE FUTURE OF ROBOTICS</div>
+<!-- HOME -->
+<section class="page active" id="home">
+    <div class="home-content">
+        <div class="eyebrow">ENGINEERING THE FUTURE OF ROBOTICS</div>
+        <h1>ROBO DRIVE <span>X</span></h1>
+        <div class="tagline">SMART · CONNECTED · AUTONOMOUS</div>
 
-  <h1>ROBO DRIVE <span>X</span></h1>
+        <button class="btn" onclick="showPage('projects')">Explore Projects</button>
+        <button class="btn secondary" onclick="showPage('track')">Live Track</button>
+    </div>
 
-  <div class="tagline">
-    SMART · CONNECTED · AUTONOMOUS
-  </div>
-
-  <div class="buttons">
-    <a href="#projects" class="btn primary">◉ Explore Projects</a>
-    <a href="#track" class="btn">▥ Live Track</a>
-  </div>
-</div>
-
-<div class="bottom">
-  <div>⌄ &nbsp; SCROLL DOWN</div>
-  <div>ROBO INVENTOR</div>
-</div>
-
+    <div class="home-bottom">
+        <div>⌄ &nbsp; SCROLL DOWN</div>
+        <div>ROBO INVENTOR</div>
+    </div>
 </section>
+
+<!-- PROJECTS -->
+<section class="page" id="projects">
+    <div class="section-title">
+        <small>VEHICLE INFORMATION</small>
+        <h1>Projects & Build</h1>
+        <p>Explore the technology behind ROBO DRIVE X.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>01 / Vehicle</h2>
+            <p>A smart robotic car platform designed for wireless control, movement monitoring and connected experiments.</p>
+            <span class="tag">Robotics</span>
+            <span class="tag">Smart Vehicle</span>
+        </div>
+
+        <div class="card">
+            <h2>02 / Controller</h2>
+            <p>Dual joystick control system. One joystick handles steering and the other handles forward and reverse movement.</p>
+            <span class="tag">Joystick</span>
+            <span class="tag">Wireless</span>
+        </div>
+
+        <div class="card">
+            <h2>03 / Wireless</h2>
+            <p>ESP8266 modules provide wireless communication for sending control information and receiving vehicle data.</p>
+            <span class="tag">ESP8266</span>
+            <span class="tag">IoT</span>
+        </div>
+
+        <div class="card">
+            <h2>04 / Cloud Platform</h2>
+            <p>Planned cloud integration for monitoring vehicle status and displaying information on a remote dashboard.</p>
+            <span class="tag">Cloud</span>
+            <span class="tag">Telemetry</span>
+        </div>
+    </div>
+</section>
+
+<!-- LIVE TRACK -->
+<section class="page" id="track">
+    <div class="section-title">
+        <small>REAL-TIME VEHICLE VISUALIZATION</small>
+        <h1>Live Track</h1>
+        <p>Vehicle movement and telemetry simulation.</p>
+    </div>
+
+    <div class="panel">
+        <div class="trackbox">
+            <div class="track-loop"></div>
+            <div class="track-car" id="trackCar"></div>
+            <div class="track-caption">ROBO DRIVE X • TRACK SIMULATION</div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric">
+                <small>SPEED</small>
+                <h2 id="speed">0 km/h</h2>
+            </div>
+
+            <div class="metric">
+                <small>DISTANCE</small>
+                <h2 id="distance">0.00 m</h2>
+            </div>
+
+            <div class="metric">
+                <small>DIRECTION</small>
+                <h2 id="direction">STOP</h2>
+            </div>
+
+            <div class="metric">
+                <small>STATUS</small>
+                <h2 id="trackStatus">IDLE</h2>
+            </div>
+        </div>
+
+        <div style="margin-top:20px">
+            <button class="btn" onclick="startSimulation()">Start Simulation</button>
+            <button class="btn secondary" onclick="stopSimulation()">Stop</button>
+            <button class="btn secondary" onclick="resetSimulation()">Reset</button>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM -->
+<section class="page" id="system">
+    <div class="section-title">
+        <small>VEHICLE NETWORK</small>
+        <h1>System Monitor</h1>
+        <p>Connection and system information.</p>
+    </div>
+
+    <div class="grid">
+        <div class="panel">
+            <h2 style="color:#38baff;margin-bottom:20px">Network Status</h2>
+
+            <div class="system-row">
+                <span>Website</span>
+                <strong><span class="status-dot"></span>Online</strong>
+            </div>
+
+            <div class="system-row">
+                <span>Vehicle connection</span>
+                <strong style="color:#ffbf54">Not connected</strong>
+            </div>
+
+            <div class="system-row">
+                <span>Cloud communication</span>
+                <strong style="color:#ffbf54">Pending setup</strong>
+            </div>
+
+            <div class="system-row">
+                <span>Controller</span>
+                <strong>Dual joystick</strong>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2 style="color:#38baff;margin-bottom:20px">Hardware</h2>
+
+            <div class="system-row">
+                <span>Wireless modules</span>
+                <strong>ESP8266 × 2</strong>
+            </div>
+
+            <div class="system-row">
+                <span>Control mode</span>
+                <strong>Joystick</strong>
+            </div>
+
+            <div class="system-row">
+                <span>Telemetry</span>
+                <strong>Demo mode</strong>
+            </div>
+
+            <div class="system-row">
+                <span>System version</span>
+                <strong>RD-X 1.0</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+    <div class="section-title">
+        <small>OUR PROJECT</small>
+        <h1>About ROBO DRIVE X</h1>
+        <p>Technology meets motion.</p>
+    </div>
+
+    <div class="panel about-box">
+        <h2>ROBO DRIVE X</h2>
+
+        <p>
+            ROBO DRIVE X is a smart connected car monitoring project
+            developed under the ROBO INVENTOR project identity.
+            It combines robotics, wireless communication, vehicle
+            monitoring and interactive visualization into one platform.
+        </p>
+
+        <h2>Our Vision</h2>
+
+        <p>
+            Explore the possibilities of smart vehicles through
+            connected systems, innovative control methods,
+            real-time information and creative engineering.
+        </p>
+
+        <h2>Technology</h2>
+
+        <p>
+            ESP8266 · Wireless Joystick Control · IoT ·
+            Cloud Communication · Vehicle Telemetry
+        </p>
+    </div>
+</section>
+
+<footer>
+    ROBO DRIVE X &nbsp; | &nbsp; ROBO INVENTOR
+</footer>
+
+<script>
+function showPage(pageId, clickedButton) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    const target = document.getElementById(pageId);
+    if (target) target.classList.add("active");
+
+    document.querySelectorAll(".navlinks button").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    if (clickedButton) {
+        clickedButton.classList.add("active");
+    } else {
+        document.querySelectorAll(".navlinks button").forEach(button => {
+            if (button.textContent.trim().toLowerCase() === pageId.toLowerCase()) {
+                button.classList.add("active");
+            }
+        });
+    }
+
+    window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+/* TRACK SIMULATION */
+let running = false;
+let distanceValue = 0;
+let simInterval = null;
+
+function startSimulation() {
+    if (running) return;
+
+    running = true;
+
+    document.getElementById("trackCar").classList.add("run");
+    document.getElementById("speed").textContent = "2 km/h";
+    document.getElementById("direction").textContent = "FORWARD";
+    document.getElementById("trackStatus").textContent = "MOVING";
+
+    simInterval = setInterval(() => {
+        distanceValue += 0.03;
+
+        document.getElementById("distance").textContent =
+            distanceValue.toFixed(2) + " m";
+    }, 100);
+}
+
+function stopSimulation() {
+    running = false;
+
+    clearInterval(simInterval);
+
+    document.getElementById("trackCar").classList.remove("run");
+    document.getElementById("speed").textContent = "0 km/h";
+    document.getElementById("direction").textContent = "STOP";
+    document.getElementById("trackStatus").textContent = "IDLE";
+}
+
+function resetSimulation() {
+    stopSimulation();
+
+    distanceValue = 0;
+    document.getElementById("distance").textContent = "0.00 m";
+}
+</script>
 
 </body>
 </html>
